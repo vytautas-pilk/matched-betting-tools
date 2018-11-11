@@ -1,3 +1,8 @@
+This is a SPA made with React and React-Router for UK and Ireland people who participate in a thing called "matched betting". This app currently has two tools: one is rather simple and another is quite advanced tool to help in this process of beating the bookies. There are a few bugs which will be fixed in the near future, as well as plans for adding more tools and functionality to the app in general.
+The app is deployed [here](https://matched-betting-tools.herokuapp.com/).
+
+=========================================================================
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
