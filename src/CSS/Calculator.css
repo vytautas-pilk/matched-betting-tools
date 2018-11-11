@@ -1,0 +1,62 @@
+.Calculator-Form {
+  width: 600px;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.Calculator-Field {
+  padding: 0.25rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Calculator-Field > * {
+  margin: 0.2rem 0;
+}
+
+.Bet-Type-Field {
+  padding: 0.25rem;
+}
+
+.Bet-Type-Field > * {
+  width: 130px;
+  margin: 0 0.5rem;
+}
+
+.Back-Bets-Field {
+  background-color: #A6D8FF;
+}
+
+.Lay-Bets-Field {
+  background-color: #FAC9D1;
+}
+
+.Calculator-Labels {
+  font-size: 1.2rem;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  margin-left: 16%;
+}
+
+.Calculator-Controls {
+  width: 65%;
+  height: 1.5rem;
+  font-size: 1.2rem;
+  text-align: center;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.6);
+  padding: 0.25rem;
+}
+
+.Results-Header {
+  font-weight: 500;
+  font-size: 1.2rem;
+}

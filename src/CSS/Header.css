@@ -1,0 +1,20 @@
+.Header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: #505973;
+  padding: 0.25rem 0.5rem;
+  height: 60px;
+}
+
+.Header-Header {
+  font-weight: 300;
+  font-size: 1.5rem;
+  color: #FFF;
+}

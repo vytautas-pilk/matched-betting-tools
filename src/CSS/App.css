@@ -1,0 +1,88 @@
+.App {
+  width: 100%;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+/*  ### MAIN BODY RULES ### */
+
+.Main-Content {
+  padding: 0 5%;
+  -webkit-transition: margin-top 0.3s;
+  -o-transition: margin-top 0.3s;
+  transition: margin-top 0.3s;
+  color: #444;
+  text-align: center;
+}
+
+.Welcome-Message {
+  padding-bottom: 0.5rem;
+}
+
+.Welcome-Message a {
+  text-decoration: none;
+}
+
+.Welcome-Text {
+  line-height: 1.5rem;
+}
+
+.Button {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: rgba(78, 145, 255, 0.8);
+  color: #FFF;
+  font-style: italic;
+  border: 0;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.Section-Header {
+  font-weight: 400;
+  font-size: 1.5rem;
+}
+
+@media screen and (min-width: 600px) {
+  .App {
+    display: -ms-grid;
+    display: grid;
+        grid-template-areas:  "header navigation"
+                          "main main";
+  }
+  .Header {
+    grid-area: header;
+  }
+  .Header-Nav {
+    grid-area: navigation;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    background-color: #505973;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .Main-Content {
+    grid-area: main;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .Header {
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+  }
+  .Header-Nav {
+    -ms-grid-row: 1;
+    -ms-grid-column: 2;
+  }
+  .Main-Content {
+    -ms-grid-row: 2;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 2;
+  }
+}
