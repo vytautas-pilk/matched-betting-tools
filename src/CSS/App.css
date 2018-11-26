@@ -16,7 +16,9 @@
 }
 
 .Welcome-Message {
-  padding-bottom: 0.5rem;
+  width: 800px;
+  max-width: 90%;
+  margin: 0 auto;
 }
 
 .Welcome-Message a {
@@ -48,7 +50,7 @@
     display: -ms-grid;
     display: grid;
         grid-template-areas:  "header navigation"
-                          "main main";
+                              "main main";
   }
   .Header {
     grid-area: header;
@@ -68,21 +70,5 @@
   }
   .Main-Content {
     grid-area: main;
-  }
-}
-
-@media screen and (min-width: 600px) {
-  .Header {
-    -ms-grid-row: 1;
-    -ms-grid-column: 1;
-  }
-  .Header-Nav {
-    -ms-grid-row: 1;
-    -ms-grid-column: 2;
-  }
-  .Main-Content {
-    -ms-grid-row: 2;
-    -ms-grid-column: 1;
-    -ms-grid-column-span: 2;
   }
 }

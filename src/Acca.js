@@ -8,13 +8,18 @@ class Acca extends React.Component {
     state = {
         backStake: "",
         totalBackOdds: "0.00",
+        totalLiability: "",
+        winnings: "",
+        returns: "",
+        profit: "",
         acca: [
             {
                 name: "leg1",
                 backOdds: "",
                 layOdds: "",
                 commision: "",
-                layStake: ""
+                layStake: "",
+                liability: ""
             }
         ],
         legCount: 1,
@@ -44,19 +49,21 @@ class Acca extends React.Component {
         const totalBackOdds = acca.reduce((total, leg) => {
             return Number(((leg.backOdds || 1) * total).toFixed(3));
             }, 1);
+        const winnings = Number(this.state.backStake) * totalBackOdds;
+        const returns = Math.floor((winnings - this.state.backStake) * 100) / 100;
         const lastLegLay = Number(((this.state.backStake * totalBackOdds) /
             (acca[acca.length - 1].layOdds -
             (acca[acca.length - 1].commision / 100))).toFixed(2));
         
         // this method returns a list of required lay stakes
-        const newAcca = acca.reduceRight(
-            (newAcca, leg, ind, array) => {
+        const layStakes = acca.reduceRight(
+            (stakesArr, leg, ind, array) => {
                 let prevLeg = array[ind + 1];
-                let prevStake = newAcca[array.length - ind - 2];
+                let prevStake = stakesArr[array.length - ind - 2];
                 if (leg === array[array.length - 1]) {
-                    return newAcca.concat(lastLegLay)
+                    return stakesArr.concat(lastLegLay)
                 } else {
-                    return newAcca.concat(
+                    return stakesArr.concat(
                         Math.floor(prevStake * (1 - (prevLeg.commision / 100)) /
                         (leg.layOdds - (leg.commision / 100)) * 100) / 100
                     )
@@ -64,18 +71,37 @@ class Acca extends React.Component {
             }, []
         ).reverse();
 
-        this.setState({
-            totalBackOdds: totalBackOdds,
-            acca: [...this.state.acca].map((leg, index) => {
-                return Object.assign(leg, {layStake: newAcca[index]})
-            })
+        const liabilities = acca.map((leg, ind) => {
+            return Math.floor(layStakes[ind] * (1 - leg.layOdds) * 100) / 100;
         })
+        const totalLiability = liabilities.reduce((total, leg) => {
+            total += leg;
+            return Math.floor(total * 100) / 100;
+        });
+        const profit = Math.floor((returns + totalLiability) * 100) / 100;
+
+        this.setState({
+            totalBackOdds,
+            totalLiability,
+            winnings,
+            returns,
+            profit,
+            acca: [...this.state.acca].map((leg, index) => {
+                return Object.assign(
+                    leg, 
+                    {
+                        layStake: this.state.backStake ? layStakes[index] : "",
+                        liability: liabilities[index]
+                    }
+                );
+            })
+        });
     }
 
     handleInputChange = (event) => {
-        const legName = event.currentTarget.parentNode.getAttribute("name");
-        const legInput = event.currentTarget.getAttribute("name");
-        const value = event.currentTarget.value;
+        const legName = event.target.parentNode.getAttribute("name");
+        const legInput = event.target.getAttribute("name");
+        const value = event.target.value;
         // conditional statement needed to check if the current event target
         // has its' state on the first level or deeper in the state object
         if (legInput === "backStake") { // first level
@@ -154,7 +180,7 @@ class Acca extends React.Component {
         return (
             <div className="Acca-Calculator">
                 {this.state.isMobile === false &&
-                    <div className="Acca-Leg">{inputsList}</div>}
+                    <div className="Acca-Legend">{inputsList}</div>}
                 {legsList}
                 <button
                     className="Acca-Button"
@@ -162,6 +188,7 @@ class Acca extends React.Component {
                 <SmallControls
                     backStake={this.state.backStake}
                     totalBackOdds={this.state.totalBackOdds}
+                    profit={this.state.profit}
                     handleInputChange={this.handleInputChange}
                 />
             </div>
@@ -170,3 +197,5 @@ class Acca extends React.Component {
 }
 
 export default Acca;
+
+

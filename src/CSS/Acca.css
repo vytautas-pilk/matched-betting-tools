@@ -5,7 +5,8 @@
   padding: 0.5rem;
 }
 
-.Acca-Leg {
+.Acca-Leg,
+.Acca-Legend {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr 1fr;
@@ -56,20 +57,19 @@
 }
 
 .Acca-Small-Controls {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-gap: 0.5rem;
+  padding: 0.25rem;
+  width: 15rem;
+  margin: 2rem auto 0 auto;
+  align-items: center;
+  justify-items: center;
 }
 
 .Acca-Small-Control {
-  width: 15%;
+  width: 50%;
   text-align: center;
 }
 
@@ -90,10 +90,15 @@
     -ms-grid-column-span: 4;
     grid-column: span 4;
   }
+  .Acca-Small-Controls {
+    justify-items: start;
+    margin: 2rem 0;
+  }
 }
 
 @media screen and (min-width: 900px) {
-  .Acca-Leg {
+  .Acca-Leg,
+  .Acca-Legend {
     border: none;
     -webkit-box-pack: center;
         -ms-flex-pack: center;
